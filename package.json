@@ -1,0 +1,24 @@
+{
+  "name": "@strider/drone",
+  "version": "1.0.0",
+  "description": "The part that completes the Strider core",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Strider-CD/drone.git"
+  },
+  "keywords": [
+    "Strider",
+    "node",
+    "drone"
+  ],
+  "author": "Ilya Radchenko <ilya@burstcreations.com> (https://github.com/knownasilya)",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/Strider-CD/drone/issues"
+  },
+  "homepage": "https://github.com/Strider-CD/drone#readme"
+}
