@@ -1,0 +1,8 @@
+{
+  "name": "strider/drone",
+  "version": "1.0.0",
+  "description": "Strider Drone API",
+  "apidoc": {
+    "title": "Strider Drone REST API"
+  }
+}
