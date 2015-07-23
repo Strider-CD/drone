@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "standard && node test | tap-spec",
+    "test": "snazzy && node test | tap-spec",
     "docs": "apidoc -i lib/ -o docs/"
   },
   "repository": {
