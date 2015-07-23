@@ -2,6 +2,7 @@
 
 The part that completes the core
 
+[![Build Status](https://travis-ci.org/Strider-CD/drone.svg)](https://travis-ci.org/Strider-CD/drone)  
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
 ## Getting Started
