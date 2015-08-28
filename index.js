@@ -29,7 +29,7 @@ var jobRunnerStatus = 'done'
 
 var emitter = new EventEmitter()
 
-var startDir = new 
+var startDir = new
 
 workflowHandler(emitter)
 jobSourceCorePoller(emitter, pollingInterval)
@@ -38,7 +38,6 @@ var plugins = require('./lib/plugins')
 plugins(emitter, client)
 
 client.on('data', function (data) {
-  console.log(data)
   client.write('pong')
 })
 
