@@ -30,11 +30,22 @@
     "tape": "^4.0.0"
   },
   "dependencies": {
+    "async": "^1.4.2",
     "config": "^1.14.0",
+    "eventemitter3": "^1.1.1",
     "hapi": "^8.8.0",
     "joi": "^6.5.0",
+    "js-yaml": "^3.4.0",
     "json5": "^0.2.0",
+    "lodash": "^3.10.1",
     "primus": "^3.1.1",
+    "primus-rooms": "^3.2.0",
+    "priorityqueuejs": "^1.0.0",
+    "shelljs": "^0.5.3",
+    "stream-splitter": "^0.3.2",
+    "tmp": "0.0.27",
+    "winston": "^1.0.1",
+    "wreck": "^6.1.0",
     "ws": "^0.7.2"
   }
 }
