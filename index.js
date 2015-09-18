@@ -37,9 +37,9 @@ jobSourceCorePoller(emitter, pollingInterval)
 var plugins = require('./lib/plugins')
 plugins(emitter, client)
 
-client.on('data', function (data) {
-  client.write('pong')
-})
+//client.on('data', function (data) {
+//  client.write('pong')
+//})
 
 if (!module.parent) {
   server.start(function (err) {
