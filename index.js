@@ -4,6 +4,7 @@ var Hapi = require('hapi')
 var Primus = require('primus')
 var Rooms = require('primus-rooms')
 var config = require('config')
+var Wreck = require('wreck')
 var server = new Hapi.Server()
 var workflowHandler = require('./lib/eventHandlers/workflow.js')
 var jobSourceCorePoller = require('./lib/jobSources/corePoller.js')
@@ -21,6 +22,7 @@ server.connection({
 })
 
 var pollingInterval = 1000
+var token = null
 
 var primus = new Primus(server.listener)
 var client = primus.Socket(config.coreUrl)
@@ -29,17 +31,30 @@ var jobRunnerStatus = 'done'
 
 var emitter = new EventEmitter()
 
-var startDir = new
-
-workflowHandler(emitter)
+var startDir = new workflowHandler(emitter, token)
 jobSourceCorePoller(emitter, pollingInterval)
 
 var plugins = require('./lib/plugins')
 plugins(emitter, client)
 
-//client.on('data', function (data) {
-//  client.write('pong')
-//})
+var basicHeader = function (username, password) {
+  return 'Basic ' + (new Buffer(username + ':' + password, 'utf8')).toString('base64')
+}
+
+var options = {
+  headers: {authorization: basicHeader(config.droneUser, config.dronePwd)},
+  timeout: 1000, // 1 second, default: unlimited
+  maxBytes: 1048576, // 1 MB, default: unlimited
+}
+
+var req = Wreck.request('GET', config.coreUrl + '/api/v1/drones/checkin', options, function (err, res) {
+  if (err) return console.error('Authentication error: ', err)
+  if (res.statusCode !== 200) return console.error('Authentication error')
+  if (!(res.headers.authorization)) return console.error('Authentication error')
+  token = res.headers.authorization
+  emitter.emit('auth.token', token)
+})
+
 
 if (!module.parent) {
   server.start(function (err) {

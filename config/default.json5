@@ -1,4 +1,6 @@
 {
   port: 8000,
-  coreUrl: ''
+  coreUrl: '',
+  droneUser: 'drone1',
+  dronePwd: 'dronePwd'
 }

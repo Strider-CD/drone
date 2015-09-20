@@ -1,4 +1,6 @@
 {
   port: 'PORT',
-  coreUrl: 'CORE_URL'
+  coreUrl: 'CORE_URL',
+  droneUser: 'DRONE_USER',
+  dronePwd: 'DRONE_PWD'
 }
