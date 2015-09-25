@@ -20,8 +20,7 @@ var req = Wreck.request('GET', config.coreUrl + '/api/v1/users/login', options, 
   adminToken = res.headers.authorization
 
   var drone = {
-    name: config.droneUser,
-    secret: config.dronePwd
+    name: config.droneName
   }
 
   var options = {
@@ -35,6 +34,8 @@ var req = Wreck.request('GET', config.coreUrl + '/api/v1/users/login', options, 
     if (err) return console.error('Create drone failed: ', err)
     if(res.statusCode !== 200) return console.error('Create drone failed status != 200')
     console.log('drone username / password should be registered')
+    console.log('Your API key is:')
+    console.log(res.headers.authorization)
   })
 
 })

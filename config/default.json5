@@ -1,6 +1,7 @@
 {
   port: 8000,
   coreUrl: '',
-  droneUser: 'drone1',
-  dronePwd: 'dronePwd'
+  coreAPIToken: '',
+  droneName: 'drone',
+  baseDir: '/tmp'
 }
