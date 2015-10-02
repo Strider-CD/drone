@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "async": "^1.4.2",
+    "babel": "^5.8.23",
     "config": "^1.14.0",
     "eventemitter3": "^1.1.1",
     "hapi": "^8.8.0",
