@@ -6,9 +6,9 @@ var basicHeader = function (username, password) {
 }
 
 var options = {
-    headers: {authorization: basicHeader(process.env.CORE_ADMIN_USER, process.env.CORE_ADMIN_PWD)},
-    timeout: 1000,    // 1 second, default: unlimited
-    maxBytes: 1048576 // 1 MB, default: unlimited
+  headers: {authorization: basicHeader(process.env.CORE_ADMIN_USER, process.env.CORE_ADMIN_PWD)},
+  timeout: 1000, // 1 second, default: unlimited
+  maxBytes: 1048576 // 1 MB, default: unlimited
 }
 
 var adminToken = null
@@ -24,10 +24,10 @@ Wreck.request('GET', config.coreUrl + '/api/v1/users/login', options, function (
   }
 
   var options = {
-      headers: {authorization: adminToken},
-      payload: JSON.stringify(drone),
-      timeout: 1000,    // 1 second, default: unlimited
-      maxBytes: 1048576 // 1 MB, default: unlimited
+    headers: {authorization: adminToken},
+    payload: JSON.stringify(drone),
+    timeout: 1000, // 1 second, default: unlimited
+    maxBytes: 1048576 // 1 MB, default: unlimited
   }
 
   Wreck.request('POST', config.coreUrl + '/api/v1/drones', options, function (err, res) {
@@ -36,6 +36,8 @@ Wreck.request('GET', config.coreUrl + '/api/v1/users/login', options, function (
     console.log('drone username / password should be registered')
     console.log('Your API key is:')
     console.log(res.headers.authorization)
+    console.log('You may start the drone using the following command:')
+    console.log('CORE_API_TOKEN=<fill in the token here> CORE_URL=<URL to core> DRONE_NAME=<some sensible name> npm start')
   })
 
 })

@@ -25,6 +25,7 @@ jobSourceCorePoller(emitter, pollingInterval)
 var plugins = require('./lib/plugins')
 plugins(emitter, client)
 
+console.log('this drone runs on: ', process.platform)
 console.log('using token', config.coreAPIToken)
 
 // TODO: periodic token refresh (in corePoller)?
