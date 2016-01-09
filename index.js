@@ -30,6 +30,3 @@ console.log('using token', config.coreAPIToken)
 
 // TODO: periodic token refresh (in corePoller)?
 emitter.emit('auth.token', config.coreAPIToken)
-
-if (!module.parent) {
-}
