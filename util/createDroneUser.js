@@ -6,7 +6,9 @@ var basicHeader = function (username, password) {
 }
 
 var options = {
-  headers: {authorization: basicHeader(process.env.CORE_ADMIN_USER, process.env.CORE_ADMIN_PWD)},
+  headers: {
+    authorization: basicHeader(config.get('core.adminUser'), config.get('core.adminPwd'))
+  },
   timeout: 1000, // 1 second, default: unlimited
   maxBytes: 1048576 // 1 MB, default: unlimited
 }

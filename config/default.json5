@@ -1,7 +1,12 @@
 {
-  port: 8000,
-  coreUrl: '',
+  port: 8001,
+  coreUrl: 'http://localhost:8000',
   coreAPIToken: '',
   droneName: 'drone',
-  baseDir: '/tmp'
+  baseDir: '/tmp',
+
+  core: {
+    adminUser: 'admin',
+    adminPwd: 'admin'
+  }
 }
