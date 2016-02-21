@@ -1,7 +1,7 @@
 {
   port: 'PORT',
   coreUrl: 'CORE_URL',
-  coreAPIToken: 'CORE_API_TOKEN',
+  droneToken: 'DRONE_TOKEN',
   droneName: 'DRONE_NAME',
   baseDir: 'DRONE_BUILD_BASE',
 

@@ -1,7 +1,7 @@
 {
   port: 8001,
   coreUrl: 'http://localhost:8000',
-  coreAPIToken: '',
+  droneToken: '',
   droneName: 'drone',
   baseDir: '/tmp',
 

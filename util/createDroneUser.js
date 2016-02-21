@@ -32,14 +32,15 @@ Wreck.request('GET', config.coreUrl + '/api/v1/users/login', options, function (
     maxBytes: 1048576 // 1 MB, default: unlimited
   }
 
-  Wreck.request('POST', config.coreUrl + '/api/v1/drones', options, function (err, res) {
+  Wreck.post(config.coreUrl + '/api/v1/drones', options, function (err, res, payload) {
     if (err) return console.error('Create drone failed: ', err)
     if (res.statusCode !== 200) return console.error('Create drone failed status != 200')
+    var body = JSON.parse(payload.toString())
     console.log('drone username / password should be registered')
     console.log('Your API key is:')
-    console.log(res.headers.authorization)
+    console.log(body.token)
     console.log('You may start the drone using the following command:')
-    console.log('CORE_API_TOKEN=<fill in the token here> CORE_URL=<URL to core> DRONE_NAME=<some sensible name> npm start')
+    console.log('DRONE_TOKEN=<fill in the token here> CORE_URL=<URL to core> DRONE_NAME=<some sensible name> npm start')
   })
 
 })
