@@ -5,6 +5,7 @@ var config = require('config')
 var workflowHandler = require('./lib/eventHandlers/workflow.js')
 var jobSourceCorePoller = require('./lib/jobSources/corePoller.js')
 var EventEmitter = require('eventemitter3')
+var Wreck = require('wreck')
 
 var pollingInterval = 1000
 
@@ -16,7 +17,6 @@ if (!(config.droneToken)) {
 
 var socket = new Primus.createSocket() // eslint-disable-line new-cap
 var client = socket(config.coreUrl + '?token=' + config.droneToken)
-
 var emitter = new EventEmitter()
 
 workflowHandler(emitter)
@@ -30,3 +30,10 @@ console.log('using token', config.droneToken)
 
 // TODO: periodic token refresh (in corePoller)?
 emitter.emit('auth.token', config.droneToken)
+
+Wreck.post(config.coreUrl + '/api/v1/drones/checkin/' + config.droneToken, {
+  headers: { Authorization: 'Bearer ' + config.droneToken }
+}, function (err, res, payload) {
+  console.log(err ? err : 'Activated')
+  console.log(payload.toString())
+})
