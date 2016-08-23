@@ -11,6 +11,8 @@ tape('placeholder - add meaningful tests', function (t) {
 })
 
 tape('runner', function (t) {
+  t.plan(1)
+
   var runner = new Runner({}, {
     startTaskId: 'test',
     tasks: {
@@ -32,5 +34,11 @@ tape('runner', function (t) {
   })
 
   runner.start()
-  t.end()
+    .then(results => {
+      console.log(results)
+      t.equal(results.length, 2, 'Ran right number of tasks')
+    })
+    .catch(err => {
+      t.error(err)
+    })
 })
