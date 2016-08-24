@@ -54,9 +54,7 @@ tape('runner - parallel', function (t) {
         tasks: {
           main: {
             module: 'test',
-            options: {},
-            successTaskId: 'deploy',
-            failureTaskId: 'cleanup'
+            options: {}
           },
           secondary: {
             cmd: 'npm test'
