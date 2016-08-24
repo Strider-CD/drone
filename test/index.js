@@ -2,6 +2,7 @@
 
 require('babel-register')()
 
+var path = require('path')
 var tape = require('tape')
 var Runner = require('../lib/workflow-runner').default
 
@@ -31,7 +32,7 @@ tape('runner', function (t) {
         cmd: 'rm -rf /var/www/myproject'
       }
     }
-  })
+  }, { pluginDir: path.join(__dirname, 'plugins') })
 
   runner.start()
     .then(results => {
