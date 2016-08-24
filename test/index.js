@@ -43,3 +43,45 @@ tape('runner', function (t) {
       t.error(err)
     })
 })
+
+tape('runner - parallel', function (t) {
+  t.plan(1)
+
+  var runner = new Runner({}, {
+    startTaskId: 'test',
+    tasks: {
+      test: {
+        tasks: {
+          main: {
+            module: 'test',
+            options: {},
+            successTaskId: 'deploy',
+            failureTaskId: 'cleanup'
+          },
+          secondary: {
+            cmd: 'npm test'
+          }
+        },
+        successTaskId: 'deploy',
+        failureTaskId: 'cleanup'
+      },
+
+      deploy: {
+        cmd: 'sudo service test'
+      },
+
+      cleanup: {
+        cmd: 'rm -rf /var/www/myproject'
+      }
+    }
+  }, { pluginDir: path.join(__dirname, 'plugins') })
+
+  runner.start()
+    .then(results => {
+      console.log(results)
+      t.equal(results.length, 3, 'Ran right number of tasks')
+    })
+    .catch(err => {
+      t.error(err)
+    })
+})
