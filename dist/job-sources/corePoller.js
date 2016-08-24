@@ -1,3 +1,5 @@
+'use strict';
+
 var Wreck = require('wreck');
 var logger = require('../util/log.js')(module);
 var config = require('config');

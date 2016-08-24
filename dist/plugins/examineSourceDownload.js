@@ -1,3 +1,5 @@
+'use strict';
+
 var fs = require('fs');
 var tmpDir = require('../util/tmpDir.js');
 var shell = require('shelljs');

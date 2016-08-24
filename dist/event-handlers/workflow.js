@@ -1,3 +1,5 @@
+'use strict';
+
 var lodash = require('lodash');
 var logger = require('../util/log.js')(module);
 var async = require('async');

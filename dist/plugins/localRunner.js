@@ -1,3 +1,5 @@
+'use strict';
+
 var async = require('async');
 var StreamSplitter = require('stream-splitter');
 var Wreck = require('wreck');

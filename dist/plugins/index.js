@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function (emitter, client) {
   var examineSourceDownload = require('./examineSourceDownload.js');
   var examineSourceStrider = require('./examineSourceStrider.js');

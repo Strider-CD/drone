@@ -1,3 +1,5 @@
+'use strict';
+
 var logger = require('../util/log.js')(module);
 require('shelljs/global');
 

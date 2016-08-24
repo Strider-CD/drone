@@ -1,3 +1,5 @@
+'use strict';
+
 // returns the name (a string) for a temporary dir
 function tmpDir(config, name) {
   var dirName = '';
