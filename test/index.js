@@ -18,7 +18,7 @@ tape('runner', function (t) {
     startTaskId: 'test',
     tasks: {
       test: {
-        module: './test',
+        module: 'test',
         options: {},
         successTaskId: 'deploy',
         failureTaskId: 'cleanup'
