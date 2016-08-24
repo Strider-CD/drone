@@ -14,7 +14,7 @@ tape('placeholder - add meaningful tests', function (t) {
 tape('runner', function (t) {
   t.plan(1)
 
-  var runner = new Runner({}, {
+  var runner = new Runner({}, {}, {
     startTaskId: 'test',
     tasks: {
       test: {
@@ -47,7 +47,7 @@ tape('runner', function (t) {
 tape('runner - parallel', function (t) {
   t.plan(1)
 
-  var runner = new Runner({}, {
+  var runner = new Runner({}, {}, {
     startTaskId: 'test',
     tasks: {
       test: {
