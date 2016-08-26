@@ -14,9 +14,21 @@ tape('placeholder - add meaningful tests', function (t) {
 tape('runner', function (t) {
   t.plan(1)
 
-  var runner = new Runner({}, {}, {
-    startTaskId: 'test',
+  var runner = new Runner({ id: 'test-project' }, {}, {
+    startTaskId: 'clone',
     tasks: {
+      clone: {
+        cmd: 'git clone --progress git@github.com:Strider-CD/dirkeeper.git',
+        successTaskId: 'install',
+        failureTaskId: 'cleanup'
+      },
+
+      install: {
+        cmd: 'cd dirkeeper && npm install',
+        successTaskId: 'test',
+        failureTaskId: 'cleanup'
+      },
+
       test: {
         module: 'test',
         options: {},
@@ -29,7 +41,7 @@ tape('runner', function (t) {
       },
 
       cleanup: {
-        cmd: 'rm -rf /var/www/myproject'
+        cmd: 'rm -rf *'
       }
     }
   }, { pluginDir: path.join(__dirname, 'plugins') })
