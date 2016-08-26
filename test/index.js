@@ -25,7 +25,7 @@ tape('runner', function (t) {
       },
 
       deploy: {
-        cmd: 'sudo service test'
+        cmd: 'echo "deploying.."'
       },
 
       cleanup: {
@@ -57,7 +57,7 @@ tape('runner - parallel', function (t) {
             options: {}
           },
           secondary: {
-            cmd: 'npm test'
+            cmd: 'npm info dirkeeper'
           }
         },
         successTaskId: 'deploy',
@@ -65,11 +65,11 @@ tape('runner - parallel', function (t) {
       },
 
       deploy: {
-        cmd: 'sudo service test'
+        cmd: 'echo "deploying.."'
       },
 
       cleanup: {
-        cmd: 'rm -rf /var/www/myproject'
+        cmd: 'ls'
       }
     }
   }, { pluginDir: path.join(__dirname, 'plugins') })
