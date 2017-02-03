@@ -1,5 +1,7 @@
 # drone
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Strider-CD/drone.svg)](https://greenkeeper.io/)
+
 The part that completes the core
 
 [![Build Status](https://travis-ci.org/Strider-CD/drone.svg)](https://travis-ci.org/Strider-CD/drone)  
