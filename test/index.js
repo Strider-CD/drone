@@ -6,11 +6,6 @@ var path = require('path')
 var tape = require('tape')
 var Runner = require('../lib/workflow-runner').default
 
-tape('placeholder - add meaningful tests', function (t) {
-  t.ok(parseFloat('1') === 1, 'No meaningful tests present... Please add some')
-  t.end()
-})
-
 tape('runner', function (t) {
   t.plan(1)
 
@@ -56,7 +51,7 @@ tape('runner', function (t) {
     })
 })
 
-tape('runner - parallel', function (t) {
+tape.skip('runner - parallel', function (t) {
   t.plan(1)
 
   var runner = new Runner({}, {}, {

@@ -4,6 +4,7 @@
   droneToken: '',
   droneName: 'drone',
   baseDir: '/tmp',
+  pollingInterval: 1000,
 
   core: {
     adminUser: 'admin',
