@@ -1,9 +1,9 @@
 'use strict';
 
 var fs = require('fs');
-var tmpDir = require('../util/tmpDir.js');
 var shell = require('shelljs');
-var logger = require('../util/log.js')(module);
+var tmpDir = require('../util/tmpDir');
+var logger = require('../util/log')(module);
 
 var examineSourceDownloadEvent = 'workspace.registeredEvent.examineSource.download';
 var domain = 'job.new';

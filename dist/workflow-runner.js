@@ -17,6 +17,10 @@ var _homedir = require('homedir');
 
 var _homedir2 = _interopRequireDefault(_homedir);
 
+var _shelljs = require('shelljs');
+
+var _shelljs2 = _interopRequireDefault(_shelljs);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
@@ -29,11 +33,15 @@ let WorkflowRunner = class WorkflowRunner {
 
     options = options || {};
 
+    const homeDir = (0, _homedir2.default)();
+
     this.project = project;
     this.job = job;
     this.workflow = workflow;
+    this.homeDir = homeDir;
     this.results = [];
-    this.pluginDir = options.pluginDir || _path2.default.join((0, _homedir2.default)(), '.drone-plugins');
+    this.cloneDir = options.cloneDir || _path2.default.join(homeDir, '.drone-data');
+    this.pluginDir = options.pluginDir || _path2.default.join(homeDir, '.drone-plugins');
   }
 
   /**
@@ -170,18 +178,53 @@ let WorkflowRunner = class WorkflowRunner {
   /**
    * `cmd` - The actual command to run
    * `options` - Options for the command above.
+   *  - `cwd` - The directory that commands start in
    *  - `screen` - The public command with private data masked
    *  - `env` - The environment vars, PATH etc..
    */
   runCmd(cmd, options) {
-    console.log(`running cmd:${ cmd }`);
-    return _bluebird2.default.resolve(`cmd:${ cmd }`);
+    /*
+      options = options || {}
+       return new Bluebird((resolve, reject) => {
+        try {
+          console.log(`running cmd: ${cmd}`)
+           let dir = options.cwd || path.join(this.cloneDir, this.project.id || 'test')
+           // check if the cwd exists, if not make it
+          if (!shell.test('-d', dir)) {
+            shell.mkdir('-p', dir)
+          }
+           // Run all commands in cwd
+          shell.pushd(dir)
+        } catch (e) {
+          return reject(e)
+        }
+         shell.exec(cmd, function (code, output) {
+          shell.popd()
+           if (code > 0) {
+            return reject(output)
+          }
+           resolve(code)
+        })
+      })
+      */
+    var DockerShell = require('docker-shell').default;
+    var dockerShell = new DockerShell();
+
+    return dockerShell.run(cmd).then(({ kill }) => {
+      console.log('has container?');
+      console.log(container);
+      this.killDocker = kill;
+    }).catch(error => {
+      console.log(error);
+      throw error;
+    });
   }
 
   finish(task) {
     var _this6 = this;
 
     return _asyncToGenerator(function* () {
+      _this6.killDocker();
       return _bluebird2.default.resolve(_this6.results);
     })();
   }

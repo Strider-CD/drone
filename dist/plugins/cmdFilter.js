@@ -1,6 +1,6 @@
 'use strict';
 
-var logger = require('../util/log.js')(module);
+var logger = require('../util/log')(module);
 require('shelljs/global');
 
 module.exports = function (emitter, client) {

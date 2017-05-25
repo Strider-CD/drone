@@ -1,24 +1,20 @@
 'use strict';
 
-var Primus = require('primus');
-var config = require('config');
-var EventEmitter = require('eventemitter3');
-var Wreck = require('wreck');
-var workflowHandler = require('./event-handlers/workflow.js');
-var jobSourceCorePoller = require('./job-sources/corePoller.js');
-
-var pollingInterval = 1000;
+const Primus = require('primus');
+const config = require('config');
+const EventEmitter = require('eventemitter3');
+const Wreck = require('wreck');
+const workflowHandler = require('./event-handlers/workflow');
+const jobSourceCorePoller = require('./job-sources/corePoller');
 
 if (!config.droneToken) {
-  if (config.droneToken.length === 0) {
-    console.error('drone token invalid');
-    process.exit(1);
-  }
+  console.error('drone token invalid');
+  process.exit(1);
 }
 
-var socket = new Primus.createSocket(); // eslint-disable-line new-cap
-var client = socket(config.coreUrl + '?token=' + config.droneToken);
-var emitter = new EventEmitter();
+let socket = new Primus.createSocket(); // eslint-disable-line new-cap
+let client = socket(config.coreUrl + '?token=' + config.droneToken);
+let emitter = new EventEmitter();
 
 workflowHandler(emitter);
 jobSourceCorePoller(emitter, pollingInterval);
